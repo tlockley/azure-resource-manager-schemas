@@ -289,6 +289,25 @@
                 "name",
                 "properties"
             ]
+        },
+        "dnszones": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "enum": [
+                        "Microsoft.Network/dnsZones"
+                    ]
+                },
+                "apiVersion": {
+                    "enum": [
+                        "2015-05-04-preview"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "properties": {}
+            }
         }
     },
     "definitions": {
@@ -320,7 +339,7 @@
                 }
             }
         },
-        
+
         "id": {
             "type": "object",
             "properties": {
@@ -380,7 +399,7 @@
                 "privateIPAllocationMethod"
             ]
         },
-        
+
         "addressSpace": {
             "type": "object",
             "properties": {
@@ -441,7 +460,7 @@
                 "properties"
             ]
         },
-        
+
         "frontendIPConfigurationsExternalProperties": {
             "type": "object",
             "properties": {
@@ -718,7 +737,7 @@
                 "properties"
             ]
         },
-        
+
         "securityruleProperties": {
             "type": "object",
             "properties": {

@@ -290,7 +290,7 @@
                 "properties"
             ]
         },
-        "dnszones": {
+        "dnsZones": {
             "type": "object",
             "properties": {
                 "type": {

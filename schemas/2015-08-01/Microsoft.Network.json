@@ -308,6 +308,36 @@
                 },
                 "properties": {}
             }
+        },
+        "dnsRecordSets": {
+            "type": "object",
+            "properties": {
+                "type":{
+                    "enum": [
+                        "Microsoft.Network/dnsZones/A",
+                        "Microsoft.Network/dnsZones/AAAA",
+                        "Microsfot.Network/dnsZones/CNAME",
+                        "Microsfot.Network/dnsZones/MX",
+                        "Microsfot.Network/dnsZones/SOA",
+                        "Microsfot.Network/dnsZones/NS",
+                        "Microsfot.Network/dnsZones/SRV",
+                        "Microsfot.Network/dnsZones/TXT"
+                    ]
+                },
+                "apiVersion": {
+                    "enum": [
+                        "2015-05-04-preview"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "properties": {
+                    "TTL": {
+                        "type": "number"
+                    }
+                }
+            }
         }
     },
     "definitions": {

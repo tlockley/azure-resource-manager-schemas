@@ -307,7 +307,13 @@
                     "type": "string"
                 },
                 "properties": {}
-            }
+            },
+            "required": [
+                "type",
+                "apiVersion",
+                "name",
+                "properties"
+            ]
         },
         "dnsRecordSets": {
             "type": "object",
@@ -316,12 +322,12 @@
                     "enum": [
                         "Microsoft.Network/dnsZones/A",
                         "Microsoft.Network/dnsZones/AAAA",
-                        "Microsfot.Network/dnsZones/CNAME",
-                        "Microsfot.Network/dnsZones/MX",
-                        "Microsfot.Network/dnsZones/SOA",
-                        "Microsfot.Network/dnsZones/NS",
-                        "Microsfot.Network/dnsZones/SRV",
-                        "Microsfot.Network/dnsZones/TXT"
+                        "Microsoft.Network/dnsZones/CNAME",
+                        "Microsoft.Network/dnsZones/MX",
+                        "Microsoft.Network/dnsZones/SOA",
+                        "Microsoft.Network/dnsZones/NS",
+                        "Microsoft.Network/dnsZones/SRV",
+                        "Microsoft.Network/dnsZones/TXT"
                     ]
                 },
                 "apiVersion": {
@@ -333,11 +339,25 @@
                     "type": "string"
                 },
                 "properties": {
-                    "TTL": {
-                        "type": "number"
-                    }
+                    "type": "object",
+                    "oneOf": [
+                        { "$ref": "#/definitions/dnsARecords" },
+                        { "$ref": "#/definitions/dnsAAAARecords" },
+                        { "$ref": "#/definitions/dnsCNAMERecord" },
+                        { "$ref": "#/definitions/dnsMXRecords" },
+                        { "$ref": "#/definitions/dnsNSRecords" },
+                        { "$ref": "#/definitions/dnsSRVRecords" },
+                        { "$ref": "#/definitions/dnsTXTRecords" },
+                        { "$ref": "#/definitions/dnsSOARecord" }
+                    ]
                 }
-            }
+            },
+            "required": [
+                "type",
+                "apiVersion",
+                "name",
+                "properties"
+            ]
         }
     },
     "definitions": {
@@ -856,6 +876,236 @@
             "required": [
                 "name",
                 "properties"
+            ]
+        },
+        "dnsARecords": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "type": "number"
+                },
+                "ARecords":{
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "ipv4Address": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "ipv4Address"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "TTL",
+                "ARecords"
+            ]
+        },
+        "dnsAAAARecords": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "type": "number"
+                },
+                "AAAARecords":{
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "ipv6Address": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "ipv6Address"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "TTL",
+                "AAAARecords"
+            ]
+        },
+        "dnsCNAMERecord": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "type": "number"
+                },
+                "CNAMERecord":{
+                    "type": "object",
+                    "properties": {
+                        "cname": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "cname"
+                    ]
+                }
+            },
+            "required": [
+                "TTL",
+                "CNAMERecord"
+            ]
+        },
+        "dnsMXRecords": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "type": "number"
+                },
+                "MXRecords":{
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "preference": {
+                                "type": "string"
+                            },
+                            "exchange": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "preference",
+                            "exchange"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "TTL",
+                "MXRecords"
+            ]
+        },
+        "dnsNSRecords": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "type": "number"
+                },
+                "NSRecords":{
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "nsdname": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "nsdname"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "TTL",
+                "NSRecords"
+            ]
+        },
+        "dnsTXTRecords": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "type": "number"
+                },
+                "TXTRecords":{
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "value"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "TTL",
+                "TXTRecords"
+            ]
+        },
+        "dnsSRVRecords": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "type": "number"
+                },
+                "SRVRecords":{
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "priority": {
+                                "type": "number"
+                            },
+                            "weight": {
+                                "type": "number"
+                            },
+                            "port": {
+                                "type": "number"
+                            },
+                            "target": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "priority",
+                            "weight",
+                            "port",
+                            "target"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "TTL",
+                "SRVRecords"
+            ]
+        },
+        "dnsSOARecord": {
+            "type": "object",
+            "properties": {
+                "TTL": {
+                    "type": "number"
+                },
+                "SOARecord":{
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                            "type": "string"
+                        },
+                        "expireTime": {
+                            "type": "number"
+                        },
+                        "host": {
+                            "type": "string"
+                        },
+                        "minimumTTL": {
+                            "type": "number"
+                        },
+                        "refreshTime": {
+                            "type": "number"
+                        },
+                        "retryTime": {
+                            "type": "number"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "TTL",
+                "SOARecord"
             ]
         }
     }

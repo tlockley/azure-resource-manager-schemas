@@ -66,6 +66,7 @@
                                     { "$ref": "http://schema.management.azure.com/schemas/2015-08-01/Microsoft.Network.json#/resourceDefinitions/networkInterfaces" },
                                     { "$ref": "http://schema.management.azure.com/schemas/2015-08-01/Microsoft.Network.json#/resourceDefinitions/routeTables" },
                                     { "$ref": "https://raw.githubusercontent.com/tlockley/azure-resource-manager-schemas/master/schemas/2015-08-01/Microsoft.Network.json#/resourceDefinitions/dnsZones"},
+                                    { "$ref": "https://raw.githubusercontent.com/tlockley/azure-resource-manager-schemas/master/schemas/2015-08-01/Microsoft.Network.json#/resourceDefinitions/dnsRecordSets" },
                                     { "$ref": "http://schema.management.azure.com/schemas/2015-08-01/Microsoft.Storage.json#/resourceDefinitions/storageAccounts" },
                                     { "$ref": "http://schema.management.azure.com/schemas/2015-08-01/Microsoft.Compute.json#/resourceDefinitions/availabilitySets" },
                                     { "$ref": "http://schema.management.azure.com/schemas/2015-08-01/Microsoft.Compute.json#/resourceDefinitions/extensions" },
